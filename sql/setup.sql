@@ -1,0 +1,7 @@
+CREATE TABLE beer (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    flavor TEXT NOT NULL,
+    mouth_feel TEXT,
+    brewery TEXT NOT NULL
+);
+
