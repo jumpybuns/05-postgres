@@ -31,16 +31,16 @@ app.get('/beer/:id', (req, res, next) => {
 
 app.put('/beer/:id', (req, res, next) => {
   Beer
-    .update(req.body.id, req.body)
-    .send(beer => res.send(beer))
+    .update(req.params.id, req.body)
+    .then(beer => res.send(beer))
     .catch(next);
 
 });
 
-app.delete('/beer', (req, res, next) => {
+app.delete('/beer/:id', (req, res, next) => {
   Beer
-    .delete(req.body.id)
-    .send(beer => res.body(beer))
+    .delete(req.params.id)
+    .then(beer => res.send(beer))
     .catch(next);
 });
 

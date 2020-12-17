@@ -64,5 +64,45 @@ describe('app endpoints', () => {
     });
   });
 
+  it('PUT updates a beer', async() => {
+    const beer = await Beer.insert({        
+
+      'name': 'Duff',
+      'mouthFeel': 'gross',
+      'brewery': 'Duff Gardens' 
+    });
+    
+
+    const response = await request(app)
+      .put(`/beer/${beer.id}`)
+      .send({   
+        'id': '1',
+        'name': 'Duff',
+        'mouthFeel': 'oh so good',
+        'brewery': 'Duff Gardens' 
+      });
+    
+
+    expect(response.body).toEqual({
+      'id': '1',
+      'name': 'Duff',
+      'mouthFeel': 'oh so good',
+      'brewery': 'Duff Gardens' 
+    });
+  });
+
+  it('DELETE a beer by id ', async() => {
+    const beer = await Beer.insert({        
+
+      'name': 'Duff',
+      'mouthFeel': 'gross',
+      'brewery': 'Duff Gardens' });
+
+    const response = await request(app)
+      .delete(`/beer/${beer.id}`);
+
+    expect(response.body).toEqual(beer);
+  });
+
   
 });
